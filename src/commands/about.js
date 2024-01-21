@@ -10,4 +10,4 @@ function about(ctx) {
     ctx.reply('Виберіть інформацію яка вас цікавить:', buttons);
 }
 
-module.exports = about
+module.exports = about;

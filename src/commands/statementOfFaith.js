@@ -19,4 +19,4 @@ function statementOfFaith(ctx) {
     ctx.replyWithMarkdown(messagePart2, buttons);
 }
 
-module.exports = statementOfFaith
+module.exports = statementOfFaith;

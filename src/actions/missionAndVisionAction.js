@@ -4,4 +4,4 @@ function missionAndVisionAction(ctx) {
     );
 }
 
-module.exports = missionAndVisionAction
+module.exports = missionAndVisionAction;

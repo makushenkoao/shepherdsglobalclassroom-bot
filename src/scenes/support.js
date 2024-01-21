@@ -1,8 +1,8 @@
 const { Scenes } = require('telegraf');
 const nodemailer = require('nodemailer');
 
-const contactScene = new Scenes.WizardScene(
-    'contactScene',
+const supportScene = new Scenes.WizardScene(
+    'supportScene',
     async (ctx) => {
         await ctx.reply("Введіть ім'я:");
         ctx.wizard.state.userData = {};
@@ -20,11 +20,6 @@ const contactScene = new Scenes.WizardScene(
     },
     async (ctx) => {
         ctx.wizard.state.userData.email = ctx.message.text;
-        await ctx.reply('Введіть тему:');
-        return ctx.wizard.next();
-    },
-    async (ctx) => {
-        ctx.wizard.state.userData.subject = ctx.message.text;
         await ctx.reply('Введіть повідомлення:');
         return ctx.wizard.next();
     },
@@ -33,7 +28,7 @@ const contactScene = new Scenes.WizardScene(
 
         const user = ctx.wizard.state.userData;
 
-        const data = `Ім'я: ${user.firstName}\nПрізвище: ${user.lastName}\nЕл.адреса: ${user.email}\nТема: ${user.subject}\nПовідомлення: ${user.message}`;
+        const data = `Ім'я: ${user.firstName}\nПрізвище: ${user.lastName}\nЕл.адреса: ${user.email}\nПовідомлення: ${user.message}`;
 
         const reply = `Дякую! Ваші дані отримані:\n\n${data}\n\nОчікуйте!`;
 
@@ -44,7 +39,6 @@ const contactScene = new Scenes.WizardScene(
                 1. Ім'я - ${user.firstName}
                 2. Прізвище - ${user.lastName}
                 3. Ел.адреса - ${user.email}
-                4. Тема - ${user.subject}
                 5. Повідомлення - ${user.message}
             `;
 
@@ -59,7 +53,7 @@ const contactScene = new Scenes.WizardScene(
             const mailOptions = {
                 from: user.email,
                 to: process.env.EMAIL,
-                subject: `Нове повідомлення з форми зворотного зв'язку бота - ${user.subject}`,
+                subject: 'Нове повідомлення з форми служби підтримки бота',
                 text: emailMessage,
             };
 
@@ -75,4 +69,4 @@ const contactScene = new Scenes.WizardScene(
     },
 );
 
-module.exports = contactScene;
+module.exports = supportScene;
