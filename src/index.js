@@ -1,6 +1,6 @@
 const { Telegraf, Markup, Scenes, session } = require('telegraf');
 const contactScene = require('./scenes/contact');
-const database = require('../database/database.json');
+const database = require('../databases/database.json');
 require('dotenv').config();
 
 const bot = new Telegraf(process.env.TOKEN);
