@@ -20,6 +20,11 @@ const showBookAction = require('./actions/showBookAction');
 const missionAndVisionAction = require('./actions/missionAndVisionAction');
 const mottoAction = require('./actions/mottoAction');
 const planAction = require('./actions/planAction');
+const donate = require('./commands/donate');
+const donateSgc = require('./actions/donateSgc');
+const donateMonobankSgc = require('./actions/donateMonobankSgc');
+const donateDevelopers = require('./actions/donateDevelopers');
+const donateMonobankDevelopers = require("./actions/donateMonobankDevelopers");
 // scenes
 const contactScene = require('./scenes/contact');
 const supportScene = require('./scenes/support');
@@ -48,6 +53,7 @@ bot.command('app', app);
 bot.command('socials', socials);
 bot.command('contactinfo', contactInfo);
 bot.command('about', about);
+bot.command('donate', donate);
 bot.command('throw_error', throwError);
 bot.help(help);
 
@@ -59,6 +65,10 @@ bot.action(/show_book_/, showBookAction);
 bot.action(/mission_and_vision/, missionAndVisionAction);
 bot.action(/motto/, mottoAction);
 bot.action(/plan/, planAction);
+bot.action(/donate_sgc/, donateSgc);
+bot.action(/donate_monobank_sgc/, donateMonobankSgc);
+bot.action(/donate_developers/, donateDevelopers);
+bot.action(/donate_monobank_developers/, donateMonobankDevelopers);
 
 // handlers
 
