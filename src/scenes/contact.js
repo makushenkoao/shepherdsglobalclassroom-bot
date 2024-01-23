@@ -15,7 +15,10 @@ const cancelText = 'скасувати';
 const contactScene = new Scenes.WizardScene(
     'contactScene',
     async (ctx) => {
-        await ctx.reply("Заповніть форму, для того, щоб ми могли зв'язатися з Вами.\n\nВведіть ім'я:");
+        await ctx.reply(
+            "Заповніть форму, для того, щоб ми могли зв'язатися з Вами.\n\nВведіть ім'я:",
+            buttons,
+        );
         ctx.wizard.state.userData = {};
         return ctx.wizard.next();
     },
@@ -24,7 +27,7 @@ const contactScene = new Scenes.WizardScene(
             return handleCancel(ctx);
         }
         ctx.wizard.state.userData.firstName = ctx.message.text;
-        await ctx.reply('Введіть прізвище:');
+        await ctx.reply('Введіть прізвище:', buttons);
         return ctx.wizard.next();
     },
     async (ctx) => {
@@ -32,7 +35,7 @@ const contactScene = new Scenes.WizardScene(
             return handleCancel(ctx);
         }
         ctx.wizard.state.userData.lastName = ctx.message.text;
-        await ctx.reply('Введіть електронну пошту:');
+        await ctx.reply('Введіть електронну пошту:', buttons);
         return ctx.wizard.next();
     },
     async (ctx) => {
@@ -40,7 +43,7 @@ const contactScene = new Scenes.WizardScene(
             return handleCancel(ctx);
         }
         ctx.wizard.state.userData.email = ctx.message.text;
-        await ctx.reply('Введіть тему:');
+        await ctx.reply('Введіть тему:', buttons);
         return ctx.wizard.next();
     },
     async (ctx) => {
@@ -48,7 +51,7 @@ const contactScene = new Scenes.WizardScene(
             return handleCancel(ctx);
         }
         ctx.wizard.state.userData.subject = ctx.message.text;
-        await ctx.reply('Введіть повідомлення:');
+        await ctx.reply('Введіть повідомлення:', buttons);
         return ctx.wizard.next();
     },
     async (ctx) => {
