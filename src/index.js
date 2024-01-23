@@ -1,4 +1,5 @@
 const { Telegraf, Markup, Scenes, session } = require('telegraf');
+const axios = require('axios');
 // commands
 const gettingStarted = require('./commands/gettingStarted');
 const start = require('./commands/start');
@@ -24,7 +25,7 @@ const donate = require('./commands/donate');
 const donateSgc = require('./actions/donateSgc');
 const donateMonobankSgc = require('./actions/donateMonobankSgc');
 const donateDevelopers = require('./actions/donateDevelopers');
-const donateMonobankDevelopers = require("./actions/donateMonobankDevelopers");
+const donateMonobankDevelopers = require('./actions/donateMonobankDevelopers');
 // scenes
 const contactScene = require('./scenes/contact');
 const supportScene = require('./scenes/support');
@@ -32,6 +33,8 @@ const supportScene = require('./scenes/support');
 require('dotenv').config();
 
 const bot = new Telegraf(process.env.TOKEN);
+
+// 96f532b687c305e7b4f346faf3c7dcfa
 
 const stage = new Scenes.Stage([contactScene, supportScene]);
 

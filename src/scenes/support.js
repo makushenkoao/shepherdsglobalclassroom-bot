@@ -1,29 +1,56 @@
-const { Scenes } = require('telegraf');
+const { Scenes, Markup } = require('telegraf');
 const nodemailer = require('nodemailer');
+
+const buttons = Markup.keyboard([
+    Markup.button.callback('Скасувати', 'cancel'),
+]).resize();
+
+async function handleCancel(ctx) {
+    await ctx.reply('Операція скасована.');
+    return ctx.scene.leave();
+}
+
+const cancelText = 'скасувати';
 
 const supportScene = new Scenes.WizardScene(
     'supportScene',
     async (ctx) => {
-        await ctx.reply("Введіть ім'я:");
+        await ctx.reply(
+            "Заповніть форму, для того, щоб ми могли зв'язатися з Вами.\n\nВведіть ім'я:",
+            buttons,
+        );
         ctx.wizard.state.userData = {};
         return ctx.wizard.next();
     },
     async (ctx) => {
+        if (ctx.message.text.toLowerCase() === cancelText) {
+            return handleCancel(ctx);
+        }
         ctx.wizard.state.userData.firstName = ctx.message.text;
-        await ctx.reply('Введіть прізвище:');
+        await ctx.reply('Введіть прізвище:', buttons);
         return ctx.wizard.next();
     },
     async (ctx) => {
+        if (ctx.message.text.toLowerCase() === cancelText) {
+            return handleCancel(ctx);
+        }
         ctx.wizard.state.userData.lastName = ctx.message.text;
-        await ctx.reply('Введіть електронну пошту:');
+        await ctx.reply('Введіть електронну пошту:', buttons);
         return ctx.wizard.next();
     },
     async (ctx) => {
+        if (ctx.message.text.toLowerCase() === cancelText) {
+            return handleCancel(ctx);
+        }
         ctx.wizard.state.userData.email = ctx.message.text;
-        await ctx.reply('Введіть повідомлення:');
+        await ctx.reply('Введіть повідомлення:', buttons);
         return ctx.wizard.next();
     },
     async (ctx) => {
+        if (ctx.message.text.toLowerCase() === cancelText) {
+            return handleCancel(ctx);
+        }
+
         ctx.wizard.state.userData.message = ctx.message.text;
 
         const user = ctx.wizard.state.userData;

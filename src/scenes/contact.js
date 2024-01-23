@@ -1,34 +1,61 @@
-const { Scenes } = require('telegraf');
+const { Scenes, Markup } = require('telegraf');
 const nodemailer = require('nodemailer');
+
+const buttons = Markup.keyboard([
+    Markup.button.callback('Скасувати', 'cancel'),
+]).resize();
+
+async function handleCancel(ctx) {
+    await ctx.reply('Операція скасована.');
+    return ctx.scene.leave();
+}
+
+const cancelText = 'скасувати';
 
 const contactScene = new Scenes.WizardScene(
     'contactScene',
     async (ctx) => {
-        await ctx.reply("Введіть ім'я:");
+        await ctx.reply("Заповніть форму, для того, щоб ми могли зв'язатися з Вами.\n\nВведіть ім'я:");
         ctx.wizard.state.userData = {};
         return ctx.wizard.next();
     },
     async (ctx) => {
+        if (ctx.message.text.toLowerCase() === cancelText) {
+            return handleCancel(ctx);
+        }
         ctx.wizard.state.userData.firstName = ctx.message.text;
         await ctx.reply('Введіть прізвище:');
         return ctx.wizard.next();
     },
     async (ctx) => {
+        if (ctx.message.text.toLowerCase() === cancelText) {
+            return handleCancel(ctx);
+        }
         ctx.wizard.state.userData.lastName = ctx.message.text;
         await ctx.reply('Введіть електронну пошту:');
         return ctx.wizard.next();
     },
     async (ctx) => {
+        if (ctx.message.text.toLowerCase() === cancelText) {
+            return handleCancel(ctx);
+        }
         ctx.wizard.state.userData.email = ctx.message.text;
         await ctx.reply('Введіть тему:');
         return ctx.wizard.next();
     },
     async (ctx) => {
+        if (ctx.message.text.toLowerCase() === cancelText) {
+            return handleCancel(ctx);
+        }
         ctx.wizard.state.userData.subject = ctx.message.text;
         await ctx.reply('Введіть повідомлення:');
         return ctx.wizard.next();
     },
     async (ctx) => {
+        if (ctx.message.text.toLowerCase() === cancelText) {
+            return handleCancel(ctx);
+        }
+
         ctx.wizard.state.userData.message = ctx.message.text;
 
         const user = ctx.wizard.state.userData;
