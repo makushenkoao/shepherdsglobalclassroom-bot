@@ -6,7 +6,7 @@ const buttons = Markup.keyboard([
 ]).resize();
 
 async function handleCancel(ctx) {
-    await ctx.reply('Операція скасована.');
+    await ctx.reply('Операція скасована.', Markup.removeKeyboard());
     return ctx.scene.leave();
 }
 

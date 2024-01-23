@@ -57,6 +57,17 @@ bot.command('socials', socials);
 bot.command('contactinfo', contactInfo);
 bot.command('about', about);
 bot.command('donate', donate);
+bot.command('inspiration', async (ctx) => {
+    const {
+        data: { data },
+    } = await axios.get('https://api.scripture.api.bible/v1/bibles/232', {
+        headers: {
+            'api-key': '96f532b687c305e7b4f346faf3c7dcfa',
+        },
+    });
+
+    console.log(data)
+});
 bot.command('throw_error', throwError);
 bot.help(help);
 
