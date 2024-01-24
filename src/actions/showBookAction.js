@@ -19,6 +19,7 @@ async function showBookAction(ctx) {
                 Markup.button.callback('PDF недоступний', 'pdf_unavailable'),
             ]);
         }
+        await ctx.replyWithPhoto(book.imageSrc)
         await ctx.replyWithMarkdown(`${title}${description}`, keyboard);
     } else {
         await ctx.replyWithMarkdown('Книга не знайдена.');

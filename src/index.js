@@ -35,8 +35,6 @@ const bot = new Telegraf(process.env.TOKEN);
 
 const stage = new Scenes.Stage([contactScene, supportScene]);
 
-// middlewares
-
 bot.use(session());
 bot.use(stage.middleware());
 
@@ -55,6 +53,8 @@ bot.command('contactinfo', contactInfo);
 bot.command('about', about);
 bot.command('donate', donate);
 bot.command('throw_error', throwError);
+bot.command('test', ctx => {
+});
 bot.help(help);
 
 // actions
