@@ -8,7 +8,7 @@ function courses(ctx) {
         ]),
     );
 
-    ctx.reply(`Наші курси:`, buttons);
+    ctx.replyWithMarkdown('*Наші курси:*', buttons);
 }
 
 module.exports = courses;

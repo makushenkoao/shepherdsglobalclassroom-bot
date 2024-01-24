@@ -8,7 +8,7 @@ function books(ctx) {
         ]),
     );
 
-    ctx.reply(`Наші книги:`, buttons);
+    ctx.replyWithMarkdown('*Наші книги:*', buttons);
 }
 
 module.exports = books;
