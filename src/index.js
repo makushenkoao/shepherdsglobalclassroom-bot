@@ -79,8 +79,8 @@ bot.catch((error, ctx) => {
     );
 });
 
-// bot.on('text', (ctx) => {
-//     ctx.reply('Я не розумію цю команду. Використовуйте /help, щоб побачити доступні команди.');
-// });
+bot.on('text', (ctx) => {
+    ctx.reply('Я не розумію цю команду. Використовуйте /help, щоб побачити доступні команди.');
+});
 
 bot.launch().then(() => console.log('Telegram bot started!'));

@@ -59,7 +59,7 @@ const supportScene = new Scenes.WizardScene(
 
         const reply = `Дякую! Ваші дані отримані:\n\n${data}\n\nОчікуйте!`;
 
-        await ctx.reply(reply);
+        await ctx.reply(reply, Markup.removeKeyboard());
 
         try {
             const emailMessage = `Дані користувача:
