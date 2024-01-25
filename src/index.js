@@ -28,6 +28,7 @@ const donateMonobankDevelopers = require('./actions/donateMonobankDevelopers');
 // scenes
 const contactScene = require('./scenes/contact');
 const supportScene = require('./scenes/support');
+const site = require('./commands/site');
 
 require('dotenv').config();
 
@@ -49,9 +50,10 @@ bot.command('books', books);
 bot.command('courses', courses);
 bot.command('app', app);
 bot.command('socials', socials);
-bot.command('contactinfo', contactInfo);
+bot.command('contact_info', contactInfo);
 bot.command('about', about);
 bot.command('donate', donate);
+bot.command('site', site);
 bot.command('throw_error', throwError);
 bot.help(help);
 

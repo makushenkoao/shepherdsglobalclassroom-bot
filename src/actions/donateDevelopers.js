@@ -12,4 +12,4 @@ function donateDevelopers(ctx) {
     ctx.reply('Виберіть cпосіб оплати:', buttons);
 }
 
-module.exports = donateDevelopers
+module.exports = donateDevelopers;
