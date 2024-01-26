@@ -1,4 +1,5 @@
 const { Telegraf, Scenes, session } = require('telegraf');
+const rateLimit = require('telegraf-ratelimit');
 // commands
 const gettingStarted = require('./commands/gettingStarted');
 const start = require('./commands/start');
@@ -13,6 +14,7 @@ const throwError = require('./commands/throwError');
 const about = require('./commands/about');
 const help = require('./commands/help');
 const contactInfo = require('./commands/contactInfo');
+const site = require('./commands/site');
 // actions
 const coursesAction = require('./actions/coursesAction');
 const showCourseAction = require('./actions/showCourseAction');
@@ -28,7 +30,8 @@ const donateMonobankDevelopers = require('./actions/donateMonobankDevelopers');
 // scenes
 const contactScene = require('./scenes/contact');
 const supportScene = require('./scenes/support');
-const site = require('./commands/site');
+// const
+const { LIMIT_CONFIG } = require('./const');
 
 require('dotenv').config();
 
@@ -38,6 +41,7 @@ const stage = new Scenes.Stage([contactScene, supportScene]);
 
 bot.use(session());
 bot.use(stage.middleware());
+bot.use(rateLimit(LIMIT_CONFIG));
 
 // commands
 
@@ -80,7 +84,9 @@ bot.catch((error, ctx) => {
 });
 
 bot.on('text', (ctx) => {
-    ctx.reply('Я не розумію цю команду. Використовуйте /help, щоб побачити доступні команди.');
+    ctx.reply(
+        'Я не розумію цю команду. Використовуйте /help, щоб побачити доступні команди.',
+    );
 });
 
-bot.launch().then(() => console.log('Telegram bot started!'));
+bot.launch();
