@@ -35,7 +35,7 @@ const { LIMIT_CONFIG } = require('./const');
 
 require('dotenv').config();
 
-const bot = new Telegraf(process.env.TOKEN_DEV);
+const bot = new Telegraf(process.env.TOKEN);
 
 const stage = new Scenes.Stage([contactScene, supportScene]);
 
@@ -88,6 +88,15 @@ bot.on('text', (ctx) => {
     );
 });
 
-(async () => {
-    await bot.launch();
-})();
+exports.handler = async (event) => {
+    try {
+        await bot.handleUpdate(JSON.parse(event.body));
+        return { statusCode: 200, body: '' };
+    } catch (e) {
+        console.error('error in handler:', e);
+        return {
+            statusCode: 400,
+            body: 'This endpoint is meant for bot and telegram communication.',
+        };
+    }
+};
