@@ -76,9 +76,8 @@ bot.action(/donate_monobank_developers/, donateMonobankDevelopers);
 
 // handlers
 
-bot.catch((error, ctx) => {
-    console.error('ERROR ==>', error);
-    ctx.reply(
+bot.catch(async (error, ctx) => {
+    await ctx.reply(
         'Виникла помилка при обробці вашого запиту. Будь ласка, спробуйте ще раз.\nЯкщо ви знайшли проблему в боті скористуйтеся командою /support.\nВибачте за надані незручності.',
     );
 });
@@ -89,4 +88,6 @@ bot.on('text', (ctx) => {
     );
 });
 
-bot.launch();
+(async () => {
+    await bot.launch();
+})();
