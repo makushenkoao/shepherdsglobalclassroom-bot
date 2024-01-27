@@ -4,7 +4,9 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "generate:command": "node ./scripts/createCommand/index.js",
+    "generate:action": "node ./scripts/createAction/index.js"
   },
   "keywords": [],
   "author": "",
