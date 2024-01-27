@@ -1,7 +1,7 @@
 const LIMIT_CONFIG = {
-    window: 2000,
+    window: 1000,
     limit: 1,
-    onLimitExceeded: (ctx, next) =>
+    onLimitExceeded: (ctx) =>
         ctx.reply('Будь ласка, зачекайте перед надсиланням нової команди.'),
 };
 
