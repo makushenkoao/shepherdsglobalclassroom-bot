@@ -76,15 +76,19 @@ bot.action(/donate_monobank_developers/, donateMonobankDevelopers);
 
 // handlers
 
-bot.catch(async (error, ctx) => {
-    await ctx.reply(
-        'Виникла помилка при обробці вашого запиту. Будь ласка, спробуйте ще раз.\nЯкщо ви знайшли проблему в боті скористуйтеся командою /support.\nВибачте за надані незручності.',
-    );
-});
-
 bot.on('text', (ctx) => {
     ctx.reply(
         'Я не розумію цю команду. Використовуйте /help, щоб побачити доступні команди.',
+    );
+});
+
+bot.on('sticker', (ctx) => {
+    ctx.replyWithSticker(ctx.message.sticker.file_id);
+});
+
+bot.catch(async (error, ctx) => {
+    await ctx.reply(
+        'Виникла помилка при обробці вашого запиту. Будь ласка, спробуйте ще раз.\nЯкщо ви знайшли проблему в боті скористуйтеся командою /support.\nВибачте за надані незручності.',
     );
 });
 

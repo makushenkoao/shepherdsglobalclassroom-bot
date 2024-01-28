@@ -2,7 +2,7 @@ const { Scenes, Markup } = require('telegraf');
 const nodemailer = require('nodemailer');
 
 const buttons = Markup.keyboard([
-    Markup.button.callback('Скасувати', 'cancel'),
+    Markup.button.callback('Скасувати операцію', 'cancel'),
 ]).resize();
 
 async function handleCancel(ctx) {
@@ -10,7 +10,7 @@ async function handleCancel(ctx) {
     return ctx.scene.leave();
 }
 
-const cancelText = 'скасувати';
+const cancelText = 'скасувати операцію';
 
 const supportScene = new Scenes.WizardScene(
     'supportScene',
